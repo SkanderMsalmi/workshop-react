@@ -35,7 +35,7 @@ export default class Product extends Component{
 
     render(){
         return (<>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '25rem' }}>
             <Card.Img variant="top" src={require('../assets/images/'+this.props?.product.img)} />
             <Card.Body>
               <Card.Title>{this.props.product.name}</Card.Title>
