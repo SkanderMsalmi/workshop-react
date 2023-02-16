@@ -35,7 +35,7 @@ export default class Product extends Component{
 
     render(){
         return (<>
-            <Card style={{ width: '25rem' }}>
+            <Card style={{ width: '25rem' , minHeight:'650px',display:'flex',padding:'20px'}}>
             <Card.Img variant="top" src={require('../assets/images/'+this.props?.product.img)} />
             <Card.Body>
               <Card.Title>{this.props.product.name}</Card.Title>
@@ -45,8 +45,10 @@ export default class Product extends Component{
               <Card.Text>
                 {this.props.product.price} DT
               </Card.Text>
-              <Button variant="primary" onClick={this.addLikes} >Like</Button> <small>{this.state.like} Likes</small>
-              <Button variant="primary" onClick={this.buyProducts} disabled={this.state.quantity === 0}>Buy</Button> <small>{this.state.quantity} Products</small>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+              <Button variant="primary" onClick={this.addLikes} style={{margin :'15px'}} >Like</Button> <small style={{marginRight:'25px'}}>{this.state.like} Likes</small>
+              <Button variant="primary" onClick={this.buyProducts} disabled={this.state.quantity === 0} style={{margin :'15px'}}>Buy</Button> <small>{this.state.quantity} Products</small>
+              </div>
             </Card.Body>
             <Alert variant="primary" show={this.state?.alertVisible}  >you bought an Item !!!!</Alert>    
           </Card>
