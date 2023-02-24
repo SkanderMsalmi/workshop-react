@@ -1,54 +1,62 @@
-import { Component } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Alert } from "react-bootstrap";
-import { useState } from "react";
+import {  useState } from "react";
+import { Alert } from 'react-bootstrap';
+import styles from './Product.module.css';
+import {Link} from 'react-router-dom';
+// const add = addLikes() =>{
+//     this.setState((oldState)=>({
+//         like : oldState.like +1
+//     }));
+// }
+// buyProducts (){
+//     this.setState((oldState)=>({
+//         quantity:oldState.quantity-1
+//     }));
+//     this.handleVisible()
+// }
+// handleVisible = () => { 
+//     this.setState({alertVisible:true})
+//     setTimeout(() => { 
+//         this.setState({alertVisible:false})
+//     }, 2000);
+// }    
+  function Product ({product}){
+    const [like, addLikes] = useState(product.like);
+    const [quantity, addQuantity] = useState(product.quantity);
+    const [alertVisible,toggleAlertVisible] =useState(false);
+    const [bestProduct,setBestProduct]= useState(false);
 
-function Product (props){
-   const [product,setProduct] = useState(props.product);
-const className=product.like>5?"text-center BestSeller":"text-center"
-   const  addLike = ()=>{
-    setProduct({...product,like:product.like +1});
-   }
+    let bestProductBackground = bestProduct ? styles.bestProduct : null;
+    const toggleBestProduct = ()=> {
+        if (like >= 4){
+          setBestProduct(true);
+        }
+      }
 
-   const buyProducts = ()=>{
-    setProduct({...product,quantity:product.quantity-1});
-   }
-    // constructor(props){
-    //     super(props);
-    //     this.state =  {like : this.props.product.like,quantity:this.props.product.quantity, alertVisible:false};
-    //     this.addLikes = this.addLikes.bind(this);
-    //     this.buyProducts = this.buyProducts.bind(this);
-    //     this.handleVisible = this.handleVisible.bind(this);
-    // }
+    const setAlertVisible = ()=>{
+      toggleAlertVisible(true);
+      setTimeout(() => {
+        toggleAlertVisible(false);
+      }, 2000);
+    }
 
-    // addLikes(){
-    //     this.setState((oldState)=>({
-    //         like : oldState.like +1
-    //     }));
-    // }
+    const setLikes = ()=>{
+        addLikes(like+1);
+        toggleBestProduct();
+    }
 
-    // buyProducts (){
-    //     this.setState((oldState)=>({
-    //         quantity:oldState.quantity-1
-    //     }));
-    //     this.handleVisible()
-    // }   
+    const setQuantity = ()=>{
+        addQuantity(quantity-1);
+        setAlertVisible();
+    }
 
-    // handleVisible = () => { 
-    //     this.setState({alertVisible:true})
-    //     setTimeout(() => { 
-    //         this.setState({alertVisible:false})
-    //     }, 2000);
-    // } 
-
-    // render(){
-
-        return (<>
-            <Card style={{ width: '25rem' , minHeight:'650px',display:'flex',padding:'20px'}} className={className}>
+        return (
+        <>
+            <Card style={{ width: '25rem' , minHeight:'650px',display:'flex',padding:'20px'}} className={bestProductBackground}>
             <Card.Img variant="top" src={require('../assets/images/'+product.img)} />
             <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
+              <Card.Title><Link to={"/products/"+product.name}>{product.name}</Link></Card.Title>
               <Card.Text>
                 {product.description}
               </Card.Text>
@@ -56,14 +64,14 @@ const className=product.like>5?"text-center BestSeller":"text-center"
                 {product.price} DT
               </Card.Text>
               <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-              <Button variant="primary" onClick={addLike} style={{margin :'15px'}} >Like</Button> <small style={{marginRight:'25px'}}>{product.like} Likes</small>
-              {/* <Button variant="primary" onClick={this.buyProducts} disabled={this.state.quantity === 0} style={{margin :'15px'}}>Buy</Button> <small>{this.state.quantity} Products</small> */}
+              <Button variant="primary" style={{margin :'15px'}} onClick={setLikes} >Like</Button> <small style={{marginRight:'25px'}}> {like} Likes</small>
+              <Button variant="danger"  style={{margin :'15px'}} onClick={setQuantity} disabled={quantity<1}>Buy</Button> <small> {quantity} Products</small>
               </div>
             </Card.Body>
-            {/* <Alert variant="primary" show={this.state?.alertVisible}  >you bought an Item !!!!</Alert>     */}
+            <Alert variant="primary" show={alertVisible}  >you bought an Item !!!!</Alert>    
           </Card>
           </>
         );
-    // }
 }
+
 export default Product;

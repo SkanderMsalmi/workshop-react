@@ -7,11 +7,7 @@ import ProductsList from '../products.json';
 export default function Products(){
 
     const [alert,setAlert]= useState(true);
-    // constructor(props) {
-    //     super(props);
-    //     this.state ={alertVisible:false}
-    //     this.handleVisible = this.handleVisible.bind(this);
-    // }
+
 
     useEffect (()=> {
         setTimeout(() => {
@@ -19,6 +15,11 @@ export default function Products(){
         }, 2000);
         //  console.log(" alert")
     });
+        // constructor(props) {
+    //     super(props);
+    //     this.state ={alertVisible:false}
+    //     this.handleVisible = this.handleVisible.bind(this);
+    // }
     // handleVisible = () => { 
     //     this.setState({alertVisible:true})
     //     setTimeout(() => { 
@@ -33,6 +34,7 @@ export default function Products(){
     // render(){
         return (
             <div>
+
                 <Alert variant="success" show={alert}><Alert.Heading>Hey, Welcome To Our Shop <strong>MyStore</strong></Alert.Heading>
                 <p>Thank you for choosing our store, we hope you enjoy your shopping experience!</p></Alert>
                 <h1 style={{textAlign:'center',margin:'50px'}}>Products</h1>

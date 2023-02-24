@@ -1,0 +1,12 @@
+.detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image{
+width: 400px;
+height: 300px;
+border: 1px solid black;
+margin: 25px;
+}
