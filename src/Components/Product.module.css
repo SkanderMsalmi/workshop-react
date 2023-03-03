@@ -1,0 +1,10 @@
+.bestProduct {
+    background-color: #DB7090;
+    animation: clignoter 2s linear infinite;
+}
+
+
+@keyframes clignoter {
+    40%   {opacity:0.8; }
+    100% { opacity:1; }
+  }

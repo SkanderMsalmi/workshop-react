@@ -7,11 +7,11 @@ const NavigationBar = ()=>{
 
         <Container>
         
-        <Navbar.Brand to="/products">MyStore</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" >MyStore</Navbar.Brand>
         
         <Nav className="me-auto">
         
-        <Nav.Link as={NavLink} to="/products" >Products</Nav.Link>
+        <Nav.Link as={NavLink} to="/products" style={({isActive})=>({textDecoration:isActive&&'underline'})}>Products</Nav.Link>
         
         </Nav>
         

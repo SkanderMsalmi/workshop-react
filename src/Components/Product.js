@@ -53,7 +53,7 @@ import {Link} from 'react-router-dom';
 
         return (
         <>
-            <Card style={{ width: '25rem' , minHeight:'650px',display:'flex',padding:'20px'}} className={bestProductBackground}>
+            <Card style={{ width: '25rem' , minHeight:'650px',display:'flex',padding:'20px',margin:'auto'}} className={bestProductBackground}>
             <Card.Img variant="top" src={require('../assets/images/'+product.img)} />
             <Card.Body>
               <Card.Title><Link to={"/products/"+product.name}>{product.name}</Link></Card.Title>
