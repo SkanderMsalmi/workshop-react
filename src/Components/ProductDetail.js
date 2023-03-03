@@ -1,10 +1,11 @@
 import { Card  } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import styles from './ProductDetail.module.css';
+
 // import data from '../products.json';
 import ProductsList from '../products.json';
-
 const ProductDetail  = ()=>{
+    const navigate = useNavigate();
 
     // const [seaarchParams,setSearchParams] = useSearchParams({name:""});
     const {name}=useParams();
@@ -24,6 +25,7 @@ const ProductDetail  = ()=>{
         <h4>Likes</h4> 
         <p>{product.like}</p>
        </div>
+       <button className="btn btn-primary" onClick={()=>navigate("/products")}>Go back</button>
        </div>
         
         </>
